@@ -1,14 +1,18 @@
 #include "holberton.h"
+
 /**
-** print_numbers - write the numbers
-** Return: no return
-**/
+ * print_numbers - print the numbers from 0 to 9
+ * Description: You can only use _putchar twice
+ */
 void print_numbers(void)
 {
-int i;
-for (i = 48; i <= 57; i++)
-{
-_putchar(i);
-}
-_putchar('\n');
+	int a;
+
+	a = 0;
+	while (a < 10)
+	{
+		_putchar(a + '0');
+		a++;
+	}
+	_putchar('\n');
 }
