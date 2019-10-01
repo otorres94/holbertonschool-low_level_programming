@@ -1,19 +1,16 @@
 #include "holberton.h"
 
 /**
- * _strlen - return length of a string
- *
- * @s: char type
- * Return:  length of string
+ * swap_int - change the values of ints
+ * @a: int type
+ * @b: int type
+ * Return: Return swapped values
  */
-
-int _strlen(char *s)
+void swap_int(int *a, int *b)
 {
-	int a;
+	int c;
 
-	for (a = 0; s[a] != '\0'; a++)
-	{
-
-	}
-	return (a);
+	c = *a;
+	*a = *b;
+	*b = c;
 }
