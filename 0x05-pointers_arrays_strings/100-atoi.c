@@ -1,47 +1,34 @@
 #include "holberton.h"
-/**
- * _isdigit - Check for digits (0 through 9)
- * @c: int type param
- * Return: 1 if digit, else 0
- */
-int _isdigit(int c)
-{
-	if (c > 47 && c < 58)
-		return (1);
-
-	return (0);
-}
-
+#include <stdio.h>
 
 /**
- * _atoi - program to converst ASCII to integer
- * @s: pointer to array of character
- * Return: Always successful
+ * _atoi - Transform a char in int variable.
+ * @s: The char characters that be as input and it will change in int variable
+ * Return: The conversion.
  */
-
 int _atoi(char *s)
 {
-	int digit;
-	int count = 0;
-	int sign = 1;
-	unsigned int value = 0;
-	unsigned int pos = 1;
+	unsigned int res = 0;
+	int i, siesdig, noeschar, signo;
 
-	for (digit = 0; ((s[digit] < '0') || (s[digit] > '9')); digit++)
+	siesdig = 0;
+	signo = 1;
+	for (i = 0; s[i] != '\0'; ++i)
 	{
-		if (s[digit] == '-')
-			sign *= -1;
+		if (s[i] == '-')
+			signo *= -1;
+		if (s[i] >= '0' && s[i] <= '9')
+		{
+			res = res * 10 + s[i] - '0';
+			siesdig = 1;
+			noeschar = 1;
+		}
+		else
+		{
+			noeschar = 0;
+		}
+		if (siesdig == 1 && noeschar == 0)
+			break;
 	}
-	for (; _isdigit(s[digit]); digit++)
-	{
-		count++;
-	}
-	while (count > 0)
-	{
-		value += ((s[digit - 1] - 48) * pos);
-		pos *= 10;
-		count--;
-		digit--;
-	}
-	return (value * sign);
+	return (res * signo);
 }
