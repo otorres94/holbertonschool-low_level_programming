@@ -1,57 +1,54 @@
 #include "holberton.h"
 #include <stdio.h>
 #include <stdlib.h>
+
 /**
- * argstostr - concatenates all arguments of your program
- *
- * @ac: int
- * @av: int
- * Return: char pointer
+ * _strlen - len of each elemento of my big array.
+ * @str: My string
+ * Return: My len.
+ */
+int _strlen(char *str)
+{
+	int i;
+
+	for (i = 0; str[i] != '\0'; i++)
+		;
+	return (i);
+}
+/**
+ * argstostr - reply argc and argv function.
+ * @ac: My arguments.
+ * @av: My array of arrays.
+ * Return: My pointer for my string.
  */
 char *argstostr(int ac, char **av)
 {
-	char *s;
-	int i;
-	int j;
-	int k;
-	int size;
+	char *a;
+	int i, sum, it1, it2;
 
-	size = 0;
 	if (ac == 0 || av == NULL)
 		return (NULL);
-
-	i = 0;
-	while (i < ac)
+	sum = 0;
+	for (i = 0; i < ac; i++)
 	{
-		j = 0;
-		while (av[i][j] != '\0')
-		{
-			size++;
-			j++;
-		}
-		i++;
+		sum = sum + _strlen(av[i]);
 	}
-	size = size + ac + 1;
-
-	s = malloc(size * sizeof(char));
-	if (s == 0)
-		return (0);
-
-	k = 0;
-	i = 0;
-	while (i < ac)
+	a = malloc((sum + ac + 1) * sizeof(char));
+	if (a == NULL)
 	{
-		j = 0;
-		while (av[i][j] != '\0')
-		{
-			s[k] = av[i][j];
-			j++;
-			k++;
-		}
-		s[k] = '\n';
-		k++;
-		i++;
+		free(a);
+		return (NULL);
 	}
-	s[k] = '\0';
-	return (s);
+	sum = 0;
+	for (it1 = 0; it1 < ac; it1++)
+	{
+		for (it2 = 0; av[it1][it2] != '\0'; it2++)
+		{
+			a[sum] = av[it1][it2];
+			sum++;
+		}
+		a[sum] = '\n';
+		sum++;
+	}
+	return (a);
 }
